@@ -1,0 +1,55 @@
+---
+title: "RegisteringAConsumer"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{RegisteringAConsumer}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(bloomR)
+
+consumer_info <- list(
+  ssn = vector(mode = "character"),
+  # addresses
+  city = vector(mode = "character"),
+  hash = vector(mode = "character"),
+  line1 = vector(mode = "character"),
+  line2 = vector(mode = "character"),
+  address_primary = vector(mode = "logical"),
+  state_code = vector(mode = "character"),
+  address_type = vector(mode = "character"),
+  zipcode = vector(mode = "character"),
+  
+  # end addresses
+  date_of_birth = vector(mode = "character"),
+  
+  # emails
+  email_address = vector(mode = "character"),
+  email_primary = vector(mode = "logical"),
+  email_type = vector(mode = "character"),
+  
+  income = vector(mode = "numeric"),
+  
+  ip_address = vector(mode = "character"),
+  
+  # names
+  first_name = vector(mode = "character"),
+  middle_name = vector(mode = "character"),
+  last_name = vector(mode = "character"),
+  generation_code = vector(mode = "character"),
+  
+  # phones
+  phone_number = vector(mode = "character"),
+  phone_primary = vector(mode = "logical"),
+  phone_type = vector(mode = "character")
+)
+```
