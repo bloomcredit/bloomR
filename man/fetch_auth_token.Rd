@@ -4,11 +4,15 @@
 \alias{fetch_auth_token}
 \title{Fetch Oauth2 token to access the Bloom Credit API.}
 \usage{
-fetch_auth_token(audience)
+fetch_auth_token(audience, client_id = NULL, client_secret = NULL)
 }
 \arguments{
 \item{audience}{\code{character} Must be one of: "dev" or "prod", corresponding to the Audience Parameter.
 See more here: https://developers.bloomcredit.io/docs/environments-1}
+
+\item{client_id}{\code{character}}
+
+\item{client_secret}{\code{character}}
 }
 \value{
 \code{character} Oauth2 token used to access the Bloom Credit API.
