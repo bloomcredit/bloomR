@@ -39,37 +39,14 @@ get_credit_data <- function(audience, order_id, auth_token) {
     )
 
 # parse report ------------------------------------------------------------
-  report <- httr::content(response, as = "parsed")
 
-  # parse all attributes
-  attributes <- report[!names(report) %in% "credit_data_order"] %>%
-    purrr::map(function(x) {
-      dplyr::bind_rows(x)
-    }) %>%
-    purrr::reduce(left_join, by = "order_id") %>%
-    select(
-      "order_id",
-      everything()
-    )
-
-  # credit_data_order
-  credit_data_order <- report$credit_data_order
-
-  credit_data <- parse_credit_data_order(credit_data_order)
-  credit_scores <- parse_credit_scores(credit_data_order$credit_scores)
-  mla_statuses <- parse_mla_statuses(credit_data_order$mla_statuses)
-  ofac_statuses <- parse_ofac_statuses(credit_data_order$ofac_statuses)
-  tradelines <- parse_tradelines(credit_data_order$tradelines)
-
-  all_data <- list(
-    attributes = attributes,
-    credit_data = credit_data,
-    mla_statuses = mla_statuses,
-    ofac_statuses = ofac_statuses,
-    tradelines = tradelines
-  )
-
-  return(all_data)
+  if (tolower(httr::http_status(response)$category) == "success") {
+    report <- httr::content(response, as = "parsed")
+    data <- parse_all_content(report)
+    return(data)
+  } else {
+    cli::cli_alert_danger("Error fetching data - http response returned message: `{httr::http_status(response)$message}`")
+  }
 
 }
 
@@ -127,4 +104,37 @@ parse_credit_data_order <- function(credit_data_order) {
     consumer_id = credit_data_order$consumer_id
   )
 
+}
+
+
+parse_all_content <- function(report) {
+  # parse all attributes
+  attributes <- report[!names(report) %in% "credit_data_order"] %>%
+    purrr::map(function(x) {
+      dplyr::bind_rows(x)
+    }) %>%
+    purrr::reduce(left_join, by = "order_id") %>%
+    select(
+      "order_id",
+      everything()
+    )
+
+  # credit_data_order
+  credit_data_order <- report$credit_data_order
+
+  credit_data <- parse_credit_data_order(credit_data_order)
+  credit_scores <- parse_credit_scores(credit_data_order$credit_scores)
+  mla_statuses <- parse_mla_statuses(credit_data_order$mla_statuses)
+  ofac_statuses <- parse_ofac_statuses(credit_data_order$ofac_statuses)
+  tradelines <- parse_tradelines(credit_data_order$tradelines)
+
+  all_data <- list(
+    attributes = attributes,
+    credit_data = credit_data,
+    mla_statuses = mla_statuses,
+    ofac_statuses = ofac_statuses,
+    tradelines = tradelines
+  )
+
+  return(all_data)
 }

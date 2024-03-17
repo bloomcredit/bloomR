@@ -1,0 +1,155 @@
+---
+title: "Using {bloomR}"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{UsingbloomR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, echo = FALSE}
+library(bloomR)
+```
+
+## Credential Management
+
+When managing your `client_id` and `client_secret`, refer to the Bloom Credit API guidance:
+
+> All requests to the Bloom API require a valid Oauth2 Access Token to be present in the `Authorization`header. You can think of this Access Token like an API key, it is what grants you access to the API.
+>
+> Bloom will provide you with two credentials:
+>
+> (1) **Client ID**\
+> and\
+> (2) **Client Secret**
+>
+> These two credentials are what you will use to request an Access Token. You will do so using the Oauth2 `client_credentials` grant flow which will be explained below.
+>
+> While your provided **Client ID** is considered a "public" credential, your **Client Secret** must only be known by your backend application(s). It must never be included in any front-end applications, stored in plaintext, or transmitted across unsecured (non-SSL) connections. Treat it as you would a password.
+
+### [Option 1]: Storing Secrets In Your R Environment
+
+`{bloomR}` provides two functions that allow you to store your `client_id` and `client_secret` in your R options.
+
+**⚠️ Use these functions carefully and make sure that you are stroring your credentials appropriately.**
+
+```{r, echo = TRUE, eval = FALSE}
+# set your client id
+bloomR::set_client_id(
+  client_id = "your_client_id"
+)
+
+bloomR::set_client_secret(
+  client_secret = "your_client_secret"
+)
+```
+
+As long as these credentials persist, this will allow you to fetch your `auth_token` without needing to provide credentials every time you need to refresh your token:
+
+```{r, eval = FALSE}
+# fetch Oauth2 token
+auth_token <- fetch_auth_token(
+  audience = "dev"
+)
+```
+
+### [Option 2]: Providing Secrets When Fetching Token
+
+You can also choose to use a password manager or other secure method to store your credentials, and only pass them to `{bloomR}` when fetching your `auth_token`.
+
+When running `fetch_auth_token()`, you will be prompted to paste your credentials.
+
+Or, you can store credentials temporarily in your environment and pass them to `fetch_auth_token()`:
+
+```{r, eval = FALSE}
+# set credentials
+client_id <- "your_client_id"
+client_secret <- "your_client_secret"
+
+# fetch Oauth2 token
+auth_token <- fetch_auth_token(
+  audience = "dev",
+  client_id = client_id,
+  client_secret = client_secret
+)
+```
+
+## Registering A Consumer
+
+To register a consumer, you will need to construct a list with all required fields, as well as your `auth_token`.
+
+See the **Registering A Consumer** vignette for more details about constructing the `consumer_info` list.
+
+#### 1). Create `consumer_info` List
+
+```{r, eval = FALSE}
+
+consumer_info <- list(
+  ssn = "123456789",
+  city = "Scranton",
+  line1 = "1725 Slough Avenue",
+  state_code = "PA",
+  zipcode = "18503",
+  date_of_birth = "1964-03-15",
+  first_name = "Michael",
+  last_name = "Scott",
+  address_primary = TRUE
+)
+```
+
+#### 2). Register Consumer
+
+```{r, eval = FALSE}
+consumer_id <- register_consumer(
+  audience = "dev", 
+  consumer_info = consumer_info, 
+  auth_token = auth_token
+  )
+```
+
+## Place An Order
+
+After you register a consumer, you can then place an order for a credit report for any SKUs that are enabled for your account.
+
+-   `audience`: values "dev" or "prod" are accepted, corresponding to the "sandbox" and "production" environments. For more detail, see [the API documentation](https://developers.bloomcredit.io/docs/environments-1#per-environment-parameters).
+
+-   `consumer_id`: value returned from `bloomR::register_consumer()`. Optionally, you can save or fetch IDs and pass them in directly.
+
+-   `portfolio_id`: your portfolio ID.
+
+-   `sku`: any SKU enabled for your account.
+
+-   `auth_token`: your Oauth2 token.
+
+```{r, eval = FALSE}
+credit_order <- order_credit_data(
+  audience = "dev", 
+  consumer_id = consumer_id, 
+  portfolio_id = "your_portfolio_id", 
+  sku = "equifax-gold-soft-fico-internet",
+  auth_token = auth_token
+  )
+```
+
+## Retrieving Credit Data
+
+After you have placed an order for credit data for a consumer, you can parse the data to a list of `data.frames` for review.
+
+-   `audience`: values "dev" or "prod" are accepted, corresponding to the "sandbox" and "production" environments. For more detail, see [the API documentation](https://developers.bloomcredit.io/docs/environments-1#per-environment-parameters).
+-   `order_id`: value returned from `credit_order$data$id`.
+-   `auth_token`: your Oauth2 token.
+
+```{r, eval = FALSE}
+credit_data <- get_credit_data(
+  audience = "dev",
+  order_id = credit_order$data$id,
+  auth_token = auth_token
+)
+```

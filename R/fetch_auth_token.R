@@ -13,7 +13,7 @@
 #' @return `character` Oauth2 token used to access the Bloom Credit API.
 #'
 #' @export
-fetch_auth_token <- function(audience, client_id = NULL, client_secret = NULL) {
+fetch_auth_token <- function(audience, client_id = getOption('bloom_api_client_id'), client_secret = getOption('bloom_api_client_secret')) {
 
   stopifnot(
     "`audience` parameter must be one of: 'dev' or 'prod'" = tolower(audience) %in% c("dev", "prod")
@@ -28,7 +28,7 @@ fetch_auth_token <- function(audience, client_id = NULL, client_secret = NULL) {
     client_id <- readline(prompt = "Enter your client_id: ")
   }
 
-  if (is.null(client_secret)) {
+  if (is.null(client_secret)){
     cli::cli_alert_info("Make sure to paste your {.arg client_secret} {.emph exactly as it appears} without quotations.")
     client_secret <- readline(prompt = "Enter your client_secret: ")
   }
