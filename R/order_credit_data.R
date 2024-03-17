@@ -7,8 +7,7 @@
 #' @param sku `character` SKU enabled for your account. E.g: "equifax-gold-soft-fico-internet".
 #' @param auth_token `character` Oauth2 token returned by [bloomR::fetch_auth_token].
 #'
-#' @return
-#' @export
+#' @return Response from placing a credit order.
 #'
 #' @examples
 #' \dontrun{
@@ -20,6 +19,8 @@
 #'   auth_token = "your_auth_token"
 #' )
 #' }
+#'
+#' @export
 order_credit_data <- function(audience, consumer_id, portfolio_id, sku, auth_token) {
 
 # set url endpoint --------------------------------------------------------

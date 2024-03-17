@@ -81,3 +81,30 @@ set_order_credit_data_url <- function(audience) {
   return(url)
 
 }
+
+#' Set the API URL based on audience to retrieve credit data report.
+#'
+#' @param audience `character` Must be one of: "dev" or "prod", corresponding to the Audience Parameter.
+#' @param order_id `character` Order ID for credit report.
+#'
+#' @examples
+#' \dontrun{
+#' credit_data_url <- set_get_credit_data_url("dev", "abc123")
+#' }
+#'
+#' @keywords internal
+#'
+#' @return `character` URL for credit data report endpoint.
+set_get_credit_data_url <- function(audience, order_id) {
+
+  if (tolower(audience) == "dev") {
+    url <- glue::glue("https://sandbox.bloom.dev/v2/data-access/orders/{order_id}/full-report")
+  }
+
+  if (tolower(audience) == "prod") {
+    url <- glue::glue("https://auth.bloom.dev/v2/data-access/orders/{order_id}/full-report")
+  }
+
+  return(url)
+
+}

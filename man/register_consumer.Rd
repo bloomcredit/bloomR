@@ -2,7 +2,7 @@
 % Please edit documentation in R/register_consumer.R
 \name{register_consumer}
 \alias{register_consumer}
-\title{Title}
+\title{Register a consumer.}
 \usage{
 register_consumer(audience, consumer_info, auth_token)
 }
@@ -21,13 +21,13 @@ See more here: https://developers.bloomcredit.io/docs/environments-1}
 \item \code{address_primary}: (boolean) must be \code{TRUE} or \code{FALSE}.
 }}
 
-\item{auth_token}{\code{character} Oauth2 token returned by \link{fetch_auth_token}}
+\item{auth_token}{\code{character} Oauth2 token returned by \link{fetch_auth_token}.}
 }
 \value{
 \verb{console message} Confirmation or error from API response.
 }
 \description{
-Title
+Register a consumer.
 }
 \examples{
 

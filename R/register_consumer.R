@@ -1,4 +1,4 @@
-#' Title
+#' Register a consumer.
 #'
 #' @param audience `character` Must be one of: "dev" or "prod", corresponding to the Audience Parameter.
 #' See more here: https://developers.bloomcredit.io/docs/environments-1
