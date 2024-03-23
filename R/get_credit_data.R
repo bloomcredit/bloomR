@@ -1,7 +1,6 @@
 #' Get credit report data based on `order_id`.
 #'
-#' @param audience `character` Must be one of: "dev" or "prod", corresponding to the Audience Parameter.
-#' See more here: https://developers.bloomcredit.io/docs/environments-1
+#' @param url `character` URL to endpoint.
 #' @param order_id `character` Order ID returned by [bloomR::order_credit_data].
 #' @param auth_token `character` Oauth2 token returned by [bloomR::fetch_auth_token].
 #'
@@ -16,10 +15,8 @@
 #' )
 #' }
 #' @export
-get_credit_data <- function(audience, order_id, auth_token) {
+get_credit_data <- function(url = NULL, order_id, auth_token) {
 
-# set url based on order_id -----------------------------------------------
-  url <- set_get_credit_data_url(audience, order_id)
 
 # construct body ----------------------------------------------------------
   body <- paste0('{

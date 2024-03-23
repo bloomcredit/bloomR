@@ -4,11 +4,10 @@
 \alias{register_consumer}
 \title{Register a consumer.}
 \usage{
-register_consumer(audience, consumer_info, auth_token)
+register_consumer(url = set_registration_url("dev"), consumer_info, auth_token)
 }
 \arguments{
-\item{audience}{\code{character} Must be one of: "dev" or "prod", corresponding to the Audience Parameter.
-See more here: https://developers.bloomcredit.io/docs/environments-1}
+\item{url}{\code{character} URL to endpoint.}
 
 \item{consumer_info}{\code{list} containing the required named fields:
 \itemize{

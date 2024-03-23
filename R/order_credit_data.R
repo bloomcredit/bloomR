@@ -1,7 +1,6 @@
-#' Title
+#' Order Credit Data
 #'
-#' @param audience `character` Must be one of: "dev" or "prod", corresponding to the Audience Parameter.
-#' See more here: https://developers.bloomcredit.io/docs/environments-1
+#' @param url `character` URL to endpoint.
 #' @param consumer_id `character` Consumer ID.
 #' @param portfolio_id `character` Portfolio ID.
 #' @param sku `character` SKU enabled for your account. E.g: "equifax-gold-soft-fico-internet".
@@ -21,16 +20,14 @@
 #' }
 #'
 #' @export
-order_credit_data <- function(audience, consumer_id, portfolio_id, sku, auth_token) {
-
-# set url endpoint --------------------------------------------------------
-  url <- set_order_credit_data_url(audience = audience)
+order_credit_data <- function(url = set_order_credit_data_url("dev"), consumer_id, portfolio_id, sku, auth_token) {
 
 # create attributes list --------------------------------------------------
   stopifnot(
     "`consumer_id` must be of type character" = is.character(consumer_id),
     "`portfolio_id` must be of type character" = is.character(portfolio_id),
-    "`sku` must be of type character" = is.character(sku)
+    "`sku` must be of type character" = is.character(sku),
+    "`url` cannot be null." = !is.null(url)
   )
 
   attributes = list(

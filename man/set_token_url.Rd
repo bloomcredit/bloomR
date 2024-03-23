@@ -22,4 +22,3 @@ url <- set_token_url("dev")
 }
 
 }
-\keyword{internal}

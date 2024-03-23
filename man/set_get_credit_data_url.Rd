@@ -23,4 +23,3 @@ credit_data_url <- set_get_credit_data_url("dev", "abc123")
 }
 
 }
-\keyword{internal}

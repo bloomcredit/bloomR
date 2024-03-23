@@ -1,7 +1,6 @@
 #' Fetch Oauth2 token to access the Bloom Credit API.
 #'
-#' @param audience `character` Must be one of: "dev" or "prod", corresponding to the Audience Parameter.
-#' See more here: https://developers.bloomcredit.io/docs/environments-1
+#' @param url `character` URL to endpoint.
 #' @param client_id `character`
 #' @param client_secret `character`
 #'
@@ -13,14 +12,11 @@
 #' @return `character` Oauth2 token used to access the Bloom Credit API.
 #'
 #' @export
-fetch_auth_token <- function(audience, client_id = getOption('bloom_api_client_id'), client_secret = getOption('bloom_api_client_secret')) {
+fetch_auth_token <- function(url = set_token_url("dev"), client_id = getOption('bloom_api_client_id'), client_secret = getOption('bloom_api_client_secret')) {
 
   stopifnot(
-    "`audience` parameter must be one of: 'dev' or 'prod'" = tolower(audience) %in% c("dev", "prod")
+    "`url` cannot be null." = !is.null(url)
   )
-
-# set audience and url based on `audience` parameter ----------------------
-  url <- set_token_url(audience)
 
 # set `client_id` and `client_secret` if not provided by user -------------
   if (is.null(client_id)) {

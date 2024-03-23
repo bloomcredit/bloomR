@@ -8,7 +8,7 @@
 #' url <- set_token_url("dev")
 #' }
 #'
-#' @keywords internal
+#' @export
 #'
 #' @return `character` URL for Oauth2 token API endpoint.
 set_token_url <- function(audience) {
@@ -37,8 +37,7 @@ set_token_url <- function(audience) {
 #' registration_url <- set_registration_url("dev")
 #' }
 #'
-#' @keywords internal
-#'
+#' @export
 #' @return `character` URL for consumer registration endpoint.
 set_registration_url <- function(audience) {
 
@@ -65,8 +64,7 @@ set_registration_url <- function(audience) {
 #' order_credit_data_url <- set_order_credit_data_url("dev")
 #' }
 #'
-#' @keywords internal
-#'
+#' @export
 #' @return `character` URL for consumer registration endpoint.
 set_order_credit_data_url <- function(audience) {
 
@@ -92,8 +90,7 @@ set_order_credit_data_url <- function(audience) {
 #' credit_data_url <- set_get_credit_data_url("dev", "abc123")
 #' }
 #'
-#' @keywords internal
-#'
+#' @export
 #' @return `character` URL for credit data report endpoint.
 set_get_credit_data_url <- function(audience, order_id) {
 

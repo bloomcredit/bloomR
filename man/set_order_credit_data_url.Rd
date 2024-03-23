@@ -22,4 +22,3 @@ order_credit_data_url <- set_order_credit_data_url("dev")
 }
 
 }
-\keyword{internal}

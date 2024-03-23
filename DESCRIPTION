@@ -14,9 +14,12 @@ Imports:
     cli,
     dplyr,
     glue,
+    gt,
     httr,
     magrittr,
-    purrr
+    purrr,
+    readr,
+    usethis
 Suggests: 
     knitr,
     rmarkdown,

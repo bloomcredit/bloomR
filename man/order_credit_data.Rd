@@ -2,13 +2,18 @@
 % Please edit documentation in R/order_credit_data.R
 \name{order_credit_data}
 \alias{order_credit_data}
-\title{Title}
+\title{Order Credit Data}
 \usage{
-order_credit_data(audience, consumer_id, portfolio_id, sku, auth_token)
+order_credit_data(
+  url = set_order_credit_data_url("dev"),
+  consumer_id,
+  portfolio_id,
+  sku,
+  auth_token
+)
 }
 \arguments{
-\item{audience}{\code{character} Must be one of: "dev" or "prod", corresponding to the Audience Parameter.
-See more here: https://developers.bloomcredit.io/docs/environments-1}
+\item{url}{\code{character} URL to endpoint.}
 
 \item{consumer_id}{\code{character} Consumer ID.}
 
@@ -22,7 +27,7 @@ See more here: https://developers.bloomcredit.io/docs/environments-1}
 Response from placing a credit order.
 }
 \description{
-Title
+Order Credit Data
 }
 \examples{
 \dontrun{

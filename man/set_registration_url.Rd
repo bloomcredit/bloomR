@@ -22,4 +22,3 @@ registration_url <- set_registration_url("dev")
 }
 
 }
-\keyword{internal}

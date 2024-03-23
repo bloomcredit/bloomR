@@ -1,7 +1,6 @@
 #' Register a consumer.
 #'
-#' @param audience `character` Must be one of: "dev" or "prod", corresponding to the Audience Parameter.
-#' See more here: https://developers.bloomcredit.io/docs/environments-1
+#' @param url `character` URL to endpoint.
 #' @param consumer_info `list` containing the required named fields:
 #' - `first_name`:
 #' - `last_name`:
@@ -44,14 +43,18 @@
 #' }
 #'
 #' @export
-register_consumer <- function(audience, consumer_info, auth_token) {
+register_consumer <- function(url = set_registration_url("dev"), consumer_info, auth_token) {
 
+  stopifnot(
+    "`url` cannot be null." = !is.null(url),
+    "`consumer_info` must be a list." = !is.list(consumer_info)
+  )
 
 # create request body -----------------------------------------------------
   body <- make_registration_body(consumer_info = consumer_info)
 
 # set registration url ----------------------------------------------------
-  url <- set_registration_url(audience = audience)
+
 
 # send request ------------------------------------------------------------
   response <- httr::POST(

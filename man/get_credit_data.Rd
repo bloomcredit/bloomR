@@ -4,11 +4,10 @@
 \alias{get_credit_data}
 \title{Get credit report data based on \code{order_id}.}
 \usage{
-get_credit_data(audience, order_id, auth_token)
+get_credit_data(url = NULL, order_id, auth_token)
 }
 \arguments{
-\item{audience}{\code{character} Must be one of: "dev" or "prod", corresponding to the Audience Parameter.
-See more here: https://developers.bloomcredit.io/docs/environments-1}
+\item{url}{\code{character} URL to endpoint.}
 
 \item{order_id}{\code{character} Order ID returned by \link{order_credit_data}.}
 
