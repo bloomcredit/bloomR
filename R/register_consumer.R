@@ -47,7 +47,7 @@ register_consumer <- function(url = set_registration_url("dev"), consumer_info, 
 
   stopifnot(
     "`url` cannot be null." = !is.null(url),
-    "`consumer_info` must be a list." = !is.list(consumer_info)
+    "`consumer_info` must be a list." = is.list(consumer_info)
   )
 
 # create request body -----------------------------------------------------

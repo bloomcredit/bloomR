@@ -3,6 +3,7 @@
 export("%>%")
 export(fetch_auth_token)
 export(get_credit_data)
+export(get_decision)
 export(order_credit_data)
 export(register_consumer)
 export(set_client_id)
