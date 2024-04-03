@@ -1,0 +1,80 @@
+---
+title: "Registering A Consumer"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{RegisteringAConsumer}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  echo = FALSE, 
+  warning = FALSE, 
+  message = FALSE
+)
+```
+
+## Overview
+
+-   For all of the fields that can be passed to the `register_consumer()` function, see the table below.
+
+-   For more information about the Bloom Credit API Consumers endpoint, see the documentation [here](https://developers.bloomcredit.io/reference/createconsumerv2 "Bloom Credit - Create A Consumer API Documentation").
+
+```{r setup}
+library(readr)
+library(dplyr)
+library(gt)
+
+consumer <- readr::read_csv("consumer.csv", show_col_types = FALSE)
+```
+
+## Creating `consumer_info` List
+
+`{bloomR}` expects a list of consumer information to be passed into the `register_consumer()` function.
+
+Example list with all required fields:
+
+```{r, eval = FALSE, echo = TRUE}
+
+consumer_info <- list(
+  ssn = "123456789",
+  city = "Scranton",
+  line1 = "1725 Slough Avenue",
+  state_code = "PA",
+  zipcode = "18503",
+  date_of_birth = "1964-03-15",
+  first_name = "Michael",
+  last_name = "Scott",
+  address_primary = TRUE
+)
+
+consumer_id <- register_consumer(
+  audience = "dev",
+  consumer_info = consumer_info,
+  auth_token = "your_auth_token"
+)
+
+```
+
+## Required Fields
+
+See the table below for all required fields.
+
+```{r}
+consumer %>% 
+  filter(Required) %>% 
+  gt::gt()
+```
+
+## All Fields
+
+See the table below for all fields.
+
+```{r}
+consumer %>% 
+  mutate(Required = ifelse(is.na(Required), FALSE, TRUE)) %>% 
+  gt::gt()
+```

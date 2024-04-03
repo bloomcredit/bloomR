@@ -1,0 +1,26 @@
+Value,Type,Required,Data Attribute,Data Object,Description
+ssn,Character,,Attributes,Top-level,Social security number. SSN must have 9 digits only with either a space or a dash as separator.
+date_of_birth,Character,,Attributes,Top-level,Date of birth. Accepted formats: yyyy-MM-dd or yyyyMMdd.
+income,Numeric,,Attributes,Top-level,Income of the consumer as numeric whole number.
+ip_address,Character,,Attributes,Top-level,IP address of the consumer in either IPv4 (x.x.x.x) or IPv6 format.
+id,Character,,Attributes,Top-level,Optional ID.
+type,Character,TRUE,Attributes,Top-level,"Hard-coded as ""consumers""."
+city,Character,TRUE,Attributes,Addresses,City code.
+hash,Character,,Attributes,Addresses,"Hash of the normalized representation of the address fields, useful for comparison purposes."
+id,Character,,Attributes,Addresses,Identifier of the address that belongs to the consumer.
+line1,Character,TRUE,Attributes,Addresses,Address basic info.
+line2,Character,,Attributes,Addresses,Address complementary info.
+address_primary,Boolean,,Attributes,Addresses,"Flag to indicate if the address is the primary one. Note: the API documentation lists this field as ""primary"", but is prefixed with ""address_"" here to allow for unique values passed through to the `consumer_info` list in R."
+state_code,Character,TRUE,Attributes,Addresses,State code.
+address_type,Character,,Attributes,Addresses,"Type of address, personal/work. Note: the API documentation lists this field as ""primary"", but is prefixed with ""address_"" here to allow for unique values passed through to the `consumer_info` list in R."
+zipcode,Character,TRUE,Attributes,Addresses,"Address postal code. For US addresses, a 5-digit format is required."
+email_address,Character,TRUE,Attributes,Emails,Email Address. Supports the format described by IEFT RFC 5322 https://datatracker.ietf.org/doc/html/rfc5322#section-3.4.
+email_primary,Boolean,,Attributes,Emails,"Primary email or not. Note: the API documentation lists this field as ""primary"", but is prefixed with ""email_"" here to allow for unique values passed through to the `consumer_info` list in R."
+email_type,Character,,Attributes,Emails,"Type of email, personal/work. Note: the API documentation lists this field as ""primary"", but is prefixed with ""email_"" here to allow for unique values passed through to the `consumer_info` list in R."
+first_name,Character,TRUE,Attributes,Name,Consumer first name.
+middle_name,Character,,Attributes,Name,Consumer middle name.
+last_name,Character,TRUE,Attributes,Name,Consumer last name.
+generation_code,Character,,Attributes,Name,"E.g., Jr., Sr., II, III, IV, ..."
+phone_number,Character,TRUE,Attributes,Phones,"Phone number. Format must follow the NANP in 10-digit notation. Can include spaces, dashes, or periods, may be prefixed with US country code or include parenthesized area code."
+phone_primary,Boolean,,Attributes,Phones,"Primary phone or not. Note: the API documentation lists this field as ""primary"", but is prefixed with ""phone_"" here to allow for unique values passed through to the `consumer_info` list in R."
+phone_type,Character,,Attributes,Phones,"Type of phone, personal/work. Note: the API documentation lists this field as ""primary"", but is prefixed with ""email_"" here to allow for unique values passed through to the `consumer_info` list in R."
