@@ -2,8 +2,7 @@
 % Please edit documentation in R/get_decision.R
 \name{get_decision}
 \alias{get_decision}
-\title{Run decision model.
-TODO: draft - in progress...}
+\title{Run decision model.}
 \usage{
 get_decision(credit_data)
 }
@@ -15,7 +14,6 @@ get_decision(credit_data)
 }
 \description{
 Run decision model.
-TODO: draft - in progress...
 }
 \examples{
 \dontrun{

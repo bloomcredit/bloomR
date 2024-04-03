@@ -39,7 +39,6 @@ get_credit_data <- function(url = NULL, order_id, auth_token) {
 
   if (tolower(httr::http_status(response)$category) == "success") {
     report <- httr::content(response, as = "parsed")
-    browser()
     data <- parse_all_content(report)
     return(data)
   } else {

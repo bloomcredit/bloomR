@@ -4,12 +4,12 @@
 \name{bloomR-package}
 \alias{bloomR}
 \alias{bloomR-package}
-\title{bloomR: What the Package Does (One Line, Title Case)}
+\title{bloomR: Access the Bloom Credit API using R}
 \description{
-What the package does (one paragraph).
+Access the Bloom Credit API using R to place orders, retrieve data, and run a basic decisioning model.
 }
 \author{
-\strong{Maintainer}: First Last \email{first.last@example.com} (\href{https://orcid.org/YOUR-ORCID-ID}{ORCID})
+\strong{Maintainer}: Matt Roumaya \email{matthewroumaya@gmail.com} (\href{https://orcid.org/0000-0002-8009-2771}{ORCID})
 
 }
 \keyword{internal}
