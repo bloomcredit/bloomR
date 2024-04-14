@@ -153,3 +153,15 @@ credit_data <- get_credit_data(
   auth_token = auth_token
 )
 ```
+
+## Running Decisioning Model
+
+Once you have retrieved your credit data, you can run a simple decisioning model:
+
+```{r, eval = FALSE}
+
+get_decision(
+  credit_data = credit_data
+  )
+```
+
