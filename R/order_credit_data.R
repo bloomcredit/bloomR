@@ -54,6 +54,7 @@ order_credit_data <- function(url = set_order_credit_data_url("dev"), consumer_i
 
 
 # handle request ----------------------------------------------------------
+  httr::stop_for_status(response)
   httr::content(response)
 
 }
