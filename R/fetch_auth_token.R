@@ -29,11 +29,16 @@ fetch_auth_token <- function(url = set_token_url("dev"), client_id = getOption('
     client_secret <- readline(prompt = "Enter your client_secret: ")
   }
 
+  auth_audience <- "dev-api"
+  if (tolower(audience) == "prod") {
+    auth_audience <- "api.bloomcredit.io"
+  }
+
 # construct API call ------------------------------------------------------
   body <- list(
     client_id = client_id,
     client_secret = client_secret,
-    audience = "dev-api",
+    audience = auth_audience,
     scope = "data-access:all",
     grant_type = "client_credentials"
   )
