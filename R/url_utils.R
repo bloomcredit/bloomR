@@ -14,11 +14,11 @@
 set_token_url <- function(audience) {
 
   if (tolower(audience) == "dev") {
-    url <- "https://auth.bloom.dev/oauth/token"
+    url <- "https://authn.bloom.dev/oauth2/token"
   }
 
   if (tolower(audience) == "prod") {
-    url <- "https://auth.bloomcredit.io/oauth/token"
+    url <- "https://authn.bloomcredit.io/oauth2/token"
   }
 
   return(url)
@@ -46,7 +46,7 @@ set_registration_url <- function(audience) {
   }
 
   if (tolower(audience) == "prod") {
-    url <- "https://auth.bloom.dev/v2/core/consumers"
+    url <- "https://api.bloomcredit.io/v2/core/consumers"
   }
 
   return(url)
@@ -73,7 +73,7 @@ set_order_credit_data_url <- function(audience) {
   }
 
   if (tolower(audience) == "prod") {
-    url <- "https://auth.bloom.dev/v2/data-access/orders/"
+    url <- "https://api.bloomcredit.io/v2/data-access/orders/"
   }
 
   return(url)
@@ -99,7 +99,7 @@ set_get_credit_data_url <- function(audience, order_id) {
   }
 
   if (tolower(audience) == "prod") {
-    url <- glue::glue("https://auth.bloom.dev/v2/data-access/orders/{order_id}/full-report")
+    url <- glue::glue("https://api.bloomcredit.io/v2/data-access/orders/{order_id}/full-report")
   }
 
   return(url)

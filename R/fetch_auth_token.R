@@ -34,6 +34,7 @@ fetch_auth_token <- function(url = set_token_url("dev"), client_id = getOption('
     client_id = client_id,
     client_secret = client_secret,
     audience = "dev-api",
+    scope = "data-access:all",
     grant_type = "client_credentials"
   )
 
