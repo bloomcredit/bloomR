@@ -2,7 +2,7 @@ test_that("set_token_url returns correct URL for dev and prod", {
 
   expect_equal(
     set_token_url(audience = "dev"),
-    "https://authn.bloom.dev/oauth2/token"
+    "https://authn.bloomcredit.dev/oauth2/token"
   )
 
   expect_equal(
