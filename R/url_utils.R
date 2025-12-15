@@ -14,7 +14,7 @@
 set_token_url <- function(audience) {
 
   if (tolower(audience) == "dev") {
-    url <- "https://authn.bloom.dev/oauth2/token"
+    url <- "https://authn.bloomcredit.dev/oauth2/token"
   }
 
   if (tolower(audience) == "prod") {
